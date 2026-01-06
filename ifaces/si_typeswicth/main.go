@@ -5,7 +5,7 @@ import (
 )
 
 func test(x interface{}) {
-	switch x.(type) {
+	switch x := x.(type) {
 	case int:
 		fmt.Println("int", x)
 	case string:
@@ -13,12 +13,11 @@ func test(x interface{}) {
 	case nil:
 		fmt.Println("nil", x)
 	case func() int:
-		f := x.(func() int)
-		if f == nil {
+		if x == nil {
 			fmt.Println("func is nil")
 			return
 		}
-		fmt.Println("func", f())
+		fmt.Println("func", x())
 	default:
 		fmt.Println("unknown")
 	}
