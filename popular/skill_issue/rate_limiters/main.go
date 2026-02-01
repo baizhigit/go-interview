@@ -1,4 +1,4 @@
-package popular
+package main
 
 import (
 	"context"
