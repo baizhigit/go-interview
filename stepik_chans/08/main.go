@@ -40,7 +40,9 @@ func executeTaskWithTimeout(ctx context.Context) error {
 func main() {
 	fmt.Println("main start")
 
-	ctx, _ := context.WithTimeout(context.Background(), timeout)
+	ctx, cancel := context.WithTimeout(context.Background(), timeout)
+	defer cancel()
+
 	err := executeTaskWithTimeout(ctx)
 	if err != nil {
 		panic(err)
