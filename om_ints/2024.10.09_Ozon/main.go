@@ -35,7 +35,30 @@ func addNum(nums []int) {
 func addNums(nums []int) {
 	fmt.Printf("addNums len: %d, cap: %d\n", len(nums), cap(nums))
 	nums = append(nums, 5, 6)
-	fmt.Printf("addNums after len: %d, cap: %d\n", len(nums), cap(nums), nums)
+	fmt.Printf("addNums after len: %d, cap: %d\n", len(nums), cap(nums))
+}
+
+func printAndSet(m map[string]int) {
+	fmt.Println("nil map: ", m["hi"])
+}
+
+type Child struct {
+	age int
+}
+
+func (c *Child) Print() {
+	fmt.Println("child")
+}
+
+func deferLogic(i int) (result int) {
+	defer func() {
+		result = result + 7 // 7 47
+	}()
+	defer func() {
+		result = result * 2 // 0 40
+	}()
+	result = i * 5 // 25
+	return 20      // 20
 }
 
 func main() {
@@ -48,6 +71,15 @@ func main() {
 
 	addNums(nums[0:2])
 	fmt.Println(nums)
+
+	printAndSet(nil)
+
+	var x Child
+	fmt.Println("x.age", x.age)
+	x.Print()
+
+	result := deferLogic(5)
+	fmt.Println("result", result)
 }
 
 // SELECT user_id, count(id) as order_count FROM orders WHERE price_total >= 1000
