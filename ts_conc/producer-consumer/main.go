@@ -62,7 +62,7 @@ func makePizza(pizzaNumber int) *PizzaOrder {
 		// delay for a bit
 		time.Sleep(time.Duration(delay) * time.Second)
 
-		if rnd <=2 {
+		if rnd <= 2 {
 			msg = fmt.Sprintf("*** We ran out of ingredients for pizza #%d!", pizzaNumber)
 		} else if rnd <= 4 {
 			msg = fmt.Sprintf("*** The cook quit while making pizza #%d!", pizzaNumber)
@@ -73,8 +73,8 @@ func makePizza(pizzaNumber int) *PizzaOrder {
 
 		p := PizzaOrder{
 			pizzaNumber: pizzaNumber,
-			message: msg,
-			success: success,
+			message:     msg,
+			success:     success,
 		}
 
 		return &p
@@ -128,7 +128,7 @@ func main() {
 	// create a producer
 	pizzaJob := &Producer{
 		data: make(chan PizzaOrder),
-		quit: make(chan chan error),
+		quit: make(chan chan error, 1),
 	}
 
 	// run the producer in the background
