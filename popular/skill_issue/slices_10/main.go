@@ -10,6 +10,9 @@ func main() {
 	res := mutation(s)
 	fmt.Println("s", s, res)
 	fmt.Println("main end", s[0:MAX])
+
+	arr := [99]byte{}
+	fmt.Println("arr", arr[10:20])
 }
 
 func generate() []int {
